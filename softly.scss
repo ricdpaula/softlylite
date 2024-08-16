@@ -1,0 +1,862 @@
+/* Biblioteca SCSS Softly Lite 2.0*/
+/* Cores Botões  */
+$cor-sucesso: #1ba39c;
+$cor-erro: #d8335b;
+$cor-info: #9e9d9b;
+$cor-importante: #f1c40f;
+$cor-dark: #282830;
+$cor-normal: #ddd;
+$cor-contraste: #fff;
+// Tipografias
+$fonte-padrao: "calibri";
+// Tamanhos tipográficos
+$fonte-grande: 3rem;
+$fonte-media: 2rem;
+$fonte-pequena: 1rem;
+$fonte-detalhes: 0.8rem;
+// Cor Softly
+$cor-softly: #4d4c7d;
+// Paleta de cores do sistema
+$cor-app1: #d8b9c3;
+$cor-app2: #827397;
+$cor-app3: $cor-softly;
+$cor-app4: #363062;
+// Mixins
+// Animações
+// Slide para a cima
+@mixin slide-cima() {
+  animation: slideCima linear 1s infinite; // Troque o "infinite" para "forward"
+  position: relative;
+  @keyframes slideCima {
+    from {
+      bottom: -20px;
+      opacity: 0;
+    }
+    to {
+      bottom: 0px;
+      opacity: 1;
+    }
+  }
+}
+// Slide para a baixo
+@mixin slide-baixo() {
+  animation: slideBaixo linear 1s infinite; // Troque o "infinite" para "forward"
+  position: relative;
+  @keyframes slideBaixo {
+    from {
+      top: -20px;
+      opacity: 0;
+    }
+    to {
+      top: 0px;
+      opacity: 1;
+    }
+  }
+}
+// Slide para a direita
+@mixin slide-direita() {
+  animation: slideDireita linear 1s infinite; // Troque o "infinite" para "forward"
+  position: relative;
+  @keyframes slideDireita {
+    from {
+      left: -30px;
+      opacity: 0;
+    }
+    to {
+      left: 0px;
+      opacity: 1;
+    }
+  }
+}
+// Slide para a esquerda
+@mixin slide-esquerda() {
+  animation: slideEsquerda linear 1s infinite; // Troque o "infinite" para "forward"
+  position: relative;
+  @keyframes slideEsquerda {
+    from {
+      right: -30px;
+      opacity: 0;
+    }
+    to {
+      right: 0px;
+      opacity: 1;
+    }
+  }
+}
+// fade in
+@mixin fadeIn() {
+  animation: fadeIn linear 1s infinite; // Troque o "infinite" para "forward"
+  position: relative;
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+// fade out
+@mixin fadeOut() {
+  animation: fadeOut linear 1s infinite; // Troque o "infinite" para "forward"
+  position: relative;
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+}
+// gelatina
+@mixin batimentos() {
+  animation: batimentos linear 0.8s infinite; // Troque o "infinite" para "forward"
+  position: relative;
+  @keyframes batimentos {
+    0% {
+      transform: scale(1);
+      @include transition();
+    }
+    50% {
+      transform: scale(0.98);
+      @include transition();
+    }
+    70% {
+      transform: scale(1);
+      @include transition();
+    }
+    90% {
+      transform: scale(0.98);
+      @include transition();
+    }
+    100% {
+      transform: scale(1);
+      @include transition();
+    }
+  }
+}
+// Textos
+@mixin tipografia($tamanho-tipo, $cor-tipo) {
+  font-size: $tamanho-tipo;
+  color: $cor-tipo;
+  font-family: $fonte-padrao;
+  font-weight: normal;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+// Mixins forms
+@mixin forms() {
+  @include inicio();
+  width: 100%;
+  flex-direction: column;
+}
+@mixin label() {
+  margin-bottom: 12px;
+  align-self: flex-start;
+  color: $cor-normal;
+}
+@mixin input() {
+  border-radius: 5px;
+  padding: 15px;
+  align-self: normal;
+  border: 1px solid $cor-normal;
+  margin-bottom: 12px;
+}
+@mixin input-arredondado() {
+  border-radius: 50px;
+  padding: 15px;
+  align-self: normal;
+  border: 1px solid $cor-normal;
+  margin-bottom: 12px;
+
+  &:focus {
+    outline: none;
+  }
+}
+@mixin input-linha() {
+  padding: 15px;
+  align-self: normal;
+  border: none;
+  background-color: transparent;
+  border-bottom: 1px solid $cor-normal;
+  margin-bottom: 12px;
+
+  &:focus {
+    outline: none;
+    border-bottom: 1px solid $cor-normal;
+    @include transition();
+  }
+}
+//Mixins notificações
+@mixin notificacao-btn() {
+  @include distribuido-total();
+  flex-direction: row;
+  border: none;
+  font-weight: normal;
+  width: 100%;
+  padding: 12px;
+  border-radius: 5px;
+  margin: 5px;
+}
+@mixin bolinha() {
+  @include centralizado();
+  height: 17px;
+  width: 17px;
+  padding: 12px;
+  font-weight: bold;
+  border-radius: 50px;
+  text-align: center;
+}
+// Mixins botões
+@mixin btn() {
+  border: none;
+  font-weight: bold;
+  width: fit-content;
+  margin: 2px;
+  border-radius: 5px;
+  padding: 12px;
+}
+@mixin btn-contorno() {
+  background-color: transparent;
+  font-weight: bold;
+  width: fit-content;
+  margin: 2px;
+  border-radius: 5px;
+  padding: 12px;
+}
+
+@mixin btn-link() {
+  border: none;
+  background-color: transparent;
+  font-weight: bold;
+  width: fit-content;
+  margin: 2px;
+}
+// Alertas
+@mixin alert {
+  @include distribuido-total();
+  font-weight: normal;
+  animation: alert linear 1s forwards;
+  position: relative;
+  height: auto;
+  margin: 5px;
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%;
+
+  // Animação
+
+  & {
+    @keyframes alert {
+      0% {
+        left: -60px;
+        opacity: 0;
+      }
+      100% {
+        left: 0px;
+        opacity: 1;
+      }
+    }
+  }
+}
+@mixin close() {
+  font-weight: bold;
+  font-size: 1rem;
+
+  &:hover {
+    @include cursor-opacidade();
+  }
+}
+/* Mixins flexbox  */
+@mixin centralizado() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@mixin centralizado-total() {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@mixin distribuido() {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+@mixin distribuido-total() {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+@mixin galeria() {
+  @include distribuido();
+  flex-wrap: wrap;
+}
+@mixin inicio() {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+@mixin final() {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+// Mixins animações css
+@mixin cursor-opacidade() {
+  cursor: pointer;
+  opacity: 0.5;
+  @include transition();
+}
+@mixin preenchimento-cor() {
+  cursor: pointer;
+  @include transition();
+}
+@mixin cursor-underline() {
+  cursor: pointer;
+  text-decoration: underline;
+  @include transition();
+}
+@mixin transform() {
+  transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+}
+@mixin transition() {
+  transition: all 0.4s ease-in;
+  -webkit-transition: all 0.4s ease-in;
+  -ms-transition: all 0.4s ease-in;
+  -moz-transition: all 0.4s ease-in;
+}
+// Box exemplo
+@mixin box() {
+  @include centralizado();
+  border-radius: 5px;
+  width: 30%;
+  height: 50px;
+  margin: 5px;
+  background-color: $cor-contraste;
+  color: $cor-softly;
+}
+/* Encadeamentos */
+// Box exemplo
+.box {
+  @include box();
+}
+/* Botões  */
+.btn-softly {
+  @include btn();
+  background-color: $cor-softly;
+  font-family: $fonte-padrao;
+  color: $cor-contraste;
+}
+.btn-softly:hover {
+  @include cursor-opacidade();
+}
+/* Botão sucesso  */
+.btn-sucesso {
+  @include btn();
+  background-color: $cor-sucesso;
+  font-family: $fonte-padrao;
+  color: $cor-contraste;
+}
+/* Evento Hover  */
+.btn-sucesso:hover {
+  @include cursor-opacidade();
+}
+/* Botão Erro  */
+.btn-erro {
+  @include btn();
+  background-color: $cor-erro;
+  font-family: $fonte-padrao;
+  color: $cor-contraste;
+}
+/* Evento Hover  */
+.btn-erro:hover {
+  @include cursor-opacidade();
+}
+/* Botão Informações  */
+.btn-info {
+  @include btn();
+  background-color: $cor-info;
+  font-family: $fonte-padrao;
+  color: $cor-contraste;
+}
+/* Evento Hover  */
+.btn-info:hover {
+  @include cursor-opacidade();
+}
+/* Botão importante  */
+.btn-importante {
+  @include btn();
+  background-color: $cor-importante;
+  font-family: $fonte-padrao;
+  color: $cor-contraste;
+}
+/* Evento Hover  */
+.btn-importante:hover {
+  @include cursor-opacidade();
+}
+/* Botão dark  */
+.btn-dark {
+  @include btn();
+  background-color: $cor-dark;
+  font-family: $fonte-padrao;
+  color: $cor-contraste;
+}
+/* Evento Hover  */
+.btn-dark:hover {
+  @include cursor-opacidade();
+}
+/* Botão Softly contorno  */
+.btn-softly-contorno {
+  @include btn-contorno();
+  border: 2px solid $cor-softly;
+  font-family: $fonte-padrao;
+  color: $cor-softly;
+}
+/* Evento Hover  */
+.btn-softly-contorno:hover {
+  @include preenchimento-cor();
+  background-color: $cor-softly;
+  color: $cor-contraste;
+}
+/* Botão Sucesso contorno  */
+.btn-sucesso-contorno {
+  @include btn-contorno();
+  border: 2px solid $cor-sucesso;
+  font-family: $fonte-padrao;
+  color: $cor-sucesso;
+}
+/* Evento Hover  */
+.btn-sucesso-contorno:hover {
+  @include preenchimento-cor();
+  background-color: $cor-sucesso;
+  color: $cor-contraste;
+}
+/* Botão Erro contorno  */
+.btn-erro-contorno {
+  @include btn-contorno();
+  border: 2px solid $cor-erro;
+  font-family: $fonte-padrao;
+  color: $cor-erro;
+}
+/* Evento Hover  */
+.btn-erro-contorno:hover {
+  @include preenchimento-cor();
+  background-color: $cor-erro;
+  color: $cor-contraste;
+}
+/* Botão Informações contorno  */
+.btn-info-contorno {
+  @include btn-contorno();
+  border: 2px solid $cor-info;
+  font-family: $fonte-padrao;
+  color: $cor-info;
+}
+/* Evento Hover  */
+.btn-info-contorno:hover {
+  @include preenchimento-cor();
+  background-color: $cor-info;
+  color: $cor-contraste;
+}
+/* Botão importante contorno  */
+.btn-importante-contorno {
+  @include btn-contorno();
+  border: 2px solid $cor-importante;
+  font-family: $fonte-padrao;
+  color: $cor-importante;
+}
+/* Evento Hover  */
+.btn-importante-contorno:hover {
+  @include preenchimento-cor();
+  background-color: $cor-importante;
+  color: $cor-contraste;
+}
+/* Botão dark contorno  */
+.btn-dark-contorno {
+  @include btn-contorno();
+  border: 2px solid $cor-dark;
+  font-family: $fonte-padrao;
+  color: $cor-dark;
+}
+/* Evento Hover  */
+.btn-dark-contorno:hover {
+  @include preenchimento-cor();
+  background-color: $cor-dark;
+  color: $cor-contraste;
+}
+/* Botão link softly */
+.btn-link-softly {
+  @include btn-link();
+  font-family: $fonte-padrao;
+  color: $cor-softly;
+}
+/* Evento Hover  */
+.btn-link-softly:hover {
+  @include cursor-underline();
+}
+/* Botão link sucesso */
+.btn-link-sucesso {
+  @include btn-link();
+  font-family: $fonte-padrao;
+  color: $cor-sucesso;
+}
+/* Evento Hover  */
+.btn-link-sucesso:hover {
+  @include cursor-underline();
+}
+/* Botão link info*/
+.btn-link-info {
+  @include btn-link();
+  font-family: $fonte-padrao;
+  color: $cor-info;
+}
+/* Evento Hover  */
+.btn-link-info:hover {
+  @include cursor-underline();
+}
+/* Botão link erro */
+.btn-link-erro {
+  @include btn-link();
+  font-family: $fonte-padrao;
+  color: $cor-erro;
+}
+/* Evento Hover  */
+.btn-link-erro:hover {
+  @include cursor-underline();
+}
+/* Botão link importante */
+.btn-link-importante {
+  @include btn-link();
+  font-family: $fonte-padrao;
+  color: $cor-importante;
+}
+/* Evento Hover  */
+.btn-link-importante:hover {
+  @include cursor-underline();
+}
+/* Botão link dark */
+.btn-link-dark {
+  @include btn-link();
+  font-family: $fonte-padrao;
+  color: $cor-dark;
+}
+/* Evento Hover  */
+.btn-link-dark:hover {
+  @include cursor-underline();
+}
+/* Alertas */
+.alerta {
+  @include alert();
+  background-color: $cor-softly;
+  font-family: $fonte-padrao;
+  color: $cor-contraste;
+
+  kbd {
+    @include close();
+  }
+}
+// Alerta de erro
+.alerta-erro {
+  @include alert();
+  background-color: $cor-erro;
+  font-family: $fonte-padrao;
+  color: $cor-contraste;
+
+  kbd {
+    @include close();
+  }
+}
+// Alerta de sucesso
+.alerta-sucesso {
+  @include alert();
+  background-color: $cor-sucesso;
+  font-family: $fonte-padrao;
+  color: $cor-contraste;
+
+  kbd {
+    @include close();
+  }
+}
+// Alerta de informações
+.alerta-info {
+  @include alert();
+  background-color: $cor-info;
+  font-family: $fonte-padrao;
+  color: $cor-contraste;
+
+  kbd {
+    @include close();
+  }
+}
+// Alerta de importante
+.alerta-importante {
+  @include alert();
+  background-color: $cor-importante;
+  font-family: $fonte-padrao;
+  color: $cor-dark;
+
+  kbd {
+    @include close();
+  }
+}
+// Alerta dark
+.alerta-dark {
+  @include alert();
+  background-color: $cor-dark;
+  font-family: $fonte-padrao;
+  color: $cor-contraste;
+
+  kbd {
+    @include close();
+  }
+}
+
+// Notificações
+// Notificação dark
+.notif-btn-dark {
+  @include notificacao-btn();
+  background-color: $cor-dark;
+  font-family: $fonte-padrao;
+  color: $cor-contraste;
+
+  .bolinha {
+    @include bolinha();
+    font-family: $fonte-padrao;
+    color: $cor-dark;
+    background-color: $cor-contraste;
+  }
+}
+// Notificação informações
+.notif-btn-info {
+  @include notificacao-btn();
+  background-color: $cor-info;
+  font-family: $fonte-padrao;
+  color: $cor-contraste;
+
+  .bolinha {
+    @include bolinha();
+    font-family: $fonte-padrao;
+    color: $cor-info;
+    background-color: $cor-contraste;
+  }
+}
+// Notificação importante
+.notif-btn-importante {
+  @include notificacao-btn();
+  background-color: $cor-importante;
+  font-family: $fonte-padrao;
+  color: $cor-contraste;
+
+  .bolinha {
+    @include bolinha();
+    font-family: $fonte-padrao;
+    color: $cor-importante;
+    background-color: $cor-contraste;
+  }
+}
+// Notificação softly
+.notif-btn-softly {
+  @include notificacao-btn();
+  background-color: $cor-softly;
+  font-family: $fonte-padrao;
+  color: $cor-contraste;
+
+  .bolinha {
+    @include bolinha();
+    font-family: $fonte-padrao;
+    color: $cor-softly;
+    background-color: $cor-contraste;
+  }
+}
+// Notificação sucesso
+.notif-btn-sucesso {
+  @include notificacao-btn();
+  background-color: $cor-sucesso;
+  font-family: $fonte-padrao;
+  color: $cor-contraste;
+
+  .bolinha {
+    @include bolinha();
+    font-family: $fonte-padrao;
+    color: $cor-sucesso;
+    background-color: $cor-contraste;
+  }
+}
+// Notificação erro
+.notif-btn-erro {
+  @include notificacao-btn();
+  background-color: $cor-erro;
+  font-family: $fonte-padrao;
+  color: $cor-contraste;
+
+  .bolinha {
+    @include bolinha();
+    font-family: $fonte-padrao;
+    color: $cor-erro;
+    background-color: $cor-contraste;
+  }
+}
+// Forms
+.form-grupo {
+  @include forms();
+  font-family: $fonte-padrao;
+
+  label {
+    @include label();
+  }
+
+  // Input padrão
+  .form-input {
+    @include input();
+  }
+  // Input arredondado
+  .form-input-arredondado {
+    @include input-arredondado();
+  }
+  // Input linha
+  .form-input-linha {
+    @include input-linha();
+  }
+}
+// Layout
+// Flex Centralizado
+.flex-centralizado {
+  @include centralizado();
+  color: $cor-contraste;
+  background-color: $cor-app4;
+  font-family: $fonte-padrao;
+  padding: 5px;
+}
+// Flex Inicio
+.flex-inicio {
+  @include inicio();
+  color: $cor-contraste;
+  background-color: $cor-app4;
+  font-family: $fonte-padrao;
+  padding: 5px;
+}
+// Flex Final
+.flex-final {
+  @include final();
+  color: $cor-contraste;
+  background-color: $cor-app4;
+  font-family: $fonte-padrao;
+  padding: 5px;
+}
+// Flex horizontal
+.flex-dist-h {
+  @include distribuido();
+  flex-direction: row;
+  height: auto;
+  text-align: center;
+  color: $cor-softly;
+  padding: 12px;
+  font-family: $fonte-padrao;
+}
+// Flex vertical
+.flex-dist-v {
+  @include distribuido();
+  flex-direction: column;
+  height: auto;
+  text-align: center;
+  color: $cor-softly;
+  padding: 12px;
+  font-family: $fonte-padrao;
+}
+// Flex tabela
+.flex-galeria {
+  @include galeria();
+  height: auto;
+  text-align: center;
+  padding: 12px;
+  font-family: $fonte-padrao;
+}
+// Tipografias
+.tipografia-h1 {
+  @include tipografia(40px, $cor-softly);
+}
+.tipografia-h2 {
+  @include tipografia(32px, $cor-softly);
+}
+.tipografia-h3 {
+  @include tipografia(28px, $cor-softly);
+}
+.tipografia-h4 {
+  @include tipografia(24px, $cor-softly);
+}
+.tipografia-h5 {
+  @include tipografia(20px, $cor-softly);
+}
+.tipografia-h6 {
+  @include tipografia(16px, $cor-softly);
+}
+// Animações
+// slide para a cima
+.slide-cima {
+  @include slide-cima();
+  width: 100%;
+  .box {
+    @include box();
+    width: 100%;
+  }
+}
+// slide para a baixo
+.slide-baixo {
+  @include slide-baixo();
+  width: 100%;
+  .box {
+    @include box();
+    width: 100%;
+  }
+}
+// slide para a direita
+.slide-direita {
+  @include slide-direita();
+  width: 100%;
+  .box {
+    @include box();
+    width: 100%;
+  }
+}
+// slide para a esquerda
+.slide-esquerda {
+  @include slide-esquerda();
+  width: 100%;
+  .box {
+    @include box();
+    width: 100%;
+  }
+}
+// fadeIn
+.fadeIn {
+  @include fadeIn();
+  width: 100%;
+  .box {
+    @include box();
+    width: 100%;
+  }
+}
+// fadeOut
+.fadeOut {
+  @include fadeOut();
+  width: 100%;
+  .box {
+    @include box();
+    width: 100%;
+  }
+}
+// gelatina
+.batimentos {
+  @include batimentos();
+  width: 100%;
+  .box {
+    @include box();
+    width: 100%;
+  }
+}
