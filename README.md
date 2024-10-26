@@ -1,3 +1,1 @@
-# softlylite
-Biblioteca estilo Bootstrap
-<a href="https://softlylite.netlify.app/">SoftlyLite</a>
+Acesse aqui: <a href="https://softlylite.netlify.app/">SoftlyLite</a>
